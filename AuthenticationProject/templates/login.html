@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {%  load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 h-screen flex items-center justify-center">
+    <div class="w-full max-w-md bg-white p-8 shadow-lg rounded-lg">
+        <h2 class="text-2xl font-bold text-center mb-6">Login</h2>
+
+        {% if message in messages %}
+            {% for message in messages %}
+                {% if message.tags == 'error' %}
+                    <center> <h4 style="color: brown;">{{message}}</h4></center>
+                    {% else %}
+                        <center><h4 style="color: blue;">{{message}}</h4></center>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        <form method="POST" class="space-y-6">
+            {% csrf_token %}
+
+            <!-- Username field -->
+            <div>
+                <label for="username" class="block text-gray-700">Username</label>
+                <input type="text" name="username" id="username" class="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                <p class="text-red-600 mt-1">{{ form.username.errors }}</p>
+            </div>
+
+            <!-- Password field -->
+            <div>
+                <label for="password" class="block text-gray-700">Password</label>
+                <input type="password" name="password" id="password" class="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                <p class="text-red-600 mt-1">{{ form.password.errors }}</p>
+            </div>
+
+            <!-- Submit button -->
+            <a href="{% url 'index' %}">
+                <button type="submit" class="w-full bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600 transition duration-300">
+                    Login
+                </button>
+            </a>
+        </form>
+
+        <p class="mt-4 text-center">
+            Don't have an account? 
+            <a href="{% url 'register' %}" class="text-blue-500 hover:underline">Sign up</a>
+        </p>
+        <p class="mt-4 text-center">
+            Forgot your Password?
+            <a href="{% url 'forgot-password' %}" class="text-blue-500 hover:underline">Reset Password</a>
+        </p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Welcome</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 h-screen flex flex-col justify-between">
+    <nav class="bg-blue-500 p-4 shadow-lg">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="/" class="text-white text-xl font-bold">MyWebsite</a>
+            <div>
+                <a href="{% url 'login' %}" class="text-white hover:text-blue-300 px-4">Login</a>
+                <a href="{% url 'register' %}" class="text-white hover:text-blue-300 px-4">Sign Up</a>
+                <a href="{% url 'logout' %}" class="text-white hover:text-blue-300 px-4">Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto py-8">
+        <h1 class="text-2xl font-bold mb-4">Products</h1>
+        <ul class="space-y-4">
+            {% for product in products %}
+                <li class="bg-white p-4 rounded shadow">
+                    <h2 class="text-xl font-semibold">{{ product.name }}</h2>
+                    <p>{{ product.description }}</p>
+                    <p class="text-gray-700">Price: {{ product.price }}</p>
+                    {% if product.image_url %}
+                        <img src="{{ product.image_url }}" alt="{{ product.name }}" class="mt-2 max-w-xs">
+                    {% endif %}
+                </li>
+            {% empty %}
+                <li class="bg-red-100 p-4 rounded shadow">No products available.</li>
+            {% endfor %}
+        </ul>
+    </main>
+
+    <footer class="bg-blue-500 p-4 text-white text-center">
+        &copy; 2024 MyWebsite. All rights reserved.
+    </footer>
+</body>
+</html>
