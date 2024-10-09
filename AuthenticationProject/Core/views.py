@@ -10,12 +10,6 @@ from django.urls import reverse
 import uuid  # เพิ่มการนำเข้า uuid
 from .models import *
 
-@login_required
-def Home(request):
-    return render(request, 'login.html')
-
-def IndexView(request):
-    return render(request, 'index.html')  # แสดงหน้า index
 
 def RegisterView(request):
     if request.method == "POST":

@@ -8,3 +8,12 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
+
+class Order(models.Model):
+    name = models.CharField(max_length=100)
+    address = models.TextField()
+    phone = models.CharField(max_length=15)
+    payment_method = models.CharField(max_length=50)
+
+    def __str__(self):
+        return f"Order {self.id} - {self.name}"
