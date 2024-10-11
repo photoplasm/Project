@@ -15,6 +15,9 @@
                 <a href="{% url 'login' %}" class="text-white hover:text-blue-300 px-4">Login</a>
                 <a href="{% url 'register' %}" class="text-white hover:text-blue-300 px-4">Sign Up</a>
                 <a href="{% url 'logout' %}" class="text-white hover:text-blue-300 px-4">Logout</a>
+                <a href="{% url 'order_page' %}" class="text-white hover:text-blue-300 px-4">Order page</a>
+                <a href="{% url 'cart_page' %}" class="text-white hover:text-blue-300 px-4">trolley</a>
+                <a href="{% url 'index' %}" class="text-white hover:text-blue-300 px-4">Home</a>
             </div>
         </div>
     </nav>
@@ -31,22 +34,22 @@
                     
                     <!-- Rating -->
                     <div class="flex justify-center mb-2">
-                        <!-- Add your rating stars here, this is an example -->
                         <span class="text-orange-500">★</span>
                         <span class="text-orange-500">★</span>
                         <span class="text-orange-500">★</span>
                         <span class="text-orange-500">★</span>
-                        <span class="text-gray-400">★</span> <!-- Example of an empty star -->
+                        <span class="text-gray-400">★</span>
                     </div>
 
                     <p class="mb-5">{{ product.description }}</p>
                     <h2 class="font-semibold text-lg mb-5">Price: ${{ product.price }}</h2>
-                    
-                    <a href="{% url 'order_page' %}">
-                        <button class="p-2 px-6 bg-purple-500 text-white rounded-md hover:bg-purple-600">
-                            Add To Cart
-                        </button>
+
+                    <!-- ปุ่ม Add to Cart พร้อมไอคอนรถเข็น -->
+                    <a href="{% url 'add_to_cart' product.id %}" class="btn btn-primary">
+                        <img src="{% static 'images/สติ๊กเกอร์รถเข็น.png' %}" alt="Cart" style="width: 20px; height: 20px;">
+                        Add to Cart
                     </a>
+
                 </section>
             {% empty %}
                 <section class="bg-red-100 p-4 rounded shadow text-center">No products available.</section>

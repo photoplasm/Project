@@ -10,11 +10,11 @@
     <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
         <h2 class="text-2xl font-semibold mb-4 text-center text-red-600">Confirm Delete</h2>
         <p class="mb-4">Are you sure you want to delete the order for {{ order.name }}?</p>
-        <form method="post">
+        <form action="{% url 'confirm_delete' product.id %}" method="POST">
             {% csrf_token %}
             <button type="submit" class="w-full p-2 bg-red-500 text-white rounded hover:bg-red-600">Yes, Delete</button>
         </form>
-        <a href="{% url 'order_page' %}" class="mt-4 text-center text-blue-500">Cancel</a>
+        <a href="{% url 'cart_page' %}" class="w-full p-2 bg-gray-500 text-white rounded hover:bg-gray-600 block text-center mt-4">Cancel</a>
     </div>
 </body>
 </html>
